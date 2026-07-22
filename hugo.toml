@@ -1,7 +1,3 @@
-baseURL = "https://YOUR-GITHUB-USERNAME.github.io/summit-advanced-manufacturing/"
-languageCode = "en-us"
+baseURL = "https://sammfg26.github.io/summit-advanced-manufacturing/"
+locale = "en-us"
 title = "Summit Advanced Manufacturing"
-theme = "HugoIndustry"
-
-[params]
-  description = "Precision 3D Printing in DFW"
