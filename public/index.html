@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<meta name="generator" content="Hugo 0.164.0">
+	<meta name="generator" content="Hugo 0.164.0"><script src="/summit-advanced-manufacturing/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=summit-advanced-manufacturing/livereload" data-no-instant defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -898,8 +898,8 @@
 
         <div>
             <div class="video-box">
-                <video autoplay muted loop playsinline>
-                    <source src="videos/printer.mp4" type="video/mp4">
+                <video id="hero-video" autoplay muted loop playsinline preload="auto">
+                    <source src="static/Videos/printer.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -1231,6 +1231,31 @@
             </div>
         </div>
     </footer>
+
+    
+    <script>
+        const heroVideo = document.getElementById('hero-video');
+        if (heroVideo) {
+            heroVideo.muted = true; 
+
+            heroVideo.addEventListener('error', () => {
+                const err = heroVideo.error;
+                const codes = { 1: 'MEDIA_ERR_ABORTED', 2: 'MEDIA_ERR_NETWORK', 3: 'MEDIA_ERR_DECODE', 4: 'MEDIA_ERR_SRC_NOT_SUPPORTED' };
+                console.error(
+                    'Hero video failed to load. src="' + heroVideo.currentSrc + '" error=' +
+                    (err ? (codes[err.code] || err.code) : 'unknown') +
+                    '. If this is MEDIA_ERR_SRC_NOT_SUPPORTED, check that static/Videos/printer.mp4 actually exists at that exact path/case on the live server, and that it is served with Content-Type: video/mp4.'
+                );
+            });
+
+            const playPromise = heroVideo.play();
+            if (playPromise !== undefined) {
+                playPromise.catch((err) => {
+                    console.warn('Hero video autoplay was blocked or failed:', err);
+                });
+            }
+        }
+    </script>
 
     
     <script>

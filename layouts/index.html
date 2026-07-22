@@ -897,8 +897,8 @@
 
         <div>
             <div class="video-box">
-                <video autoplay muted loop playsinline>
-                    <source src="videos/printer.mp4" type="video/mp4">
+                <video id="hero-video" autoplay muted loop playsinline preload="auto">
+                    <source src="static/Videos/printer.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -1230,6 +1230,31 @@
             </div>
         </div>
     </footer>
+
+    <!-- Hero video: force muted playback + surface load errors in the console -->
+    <script>
+        const heroVideo = document.getElementById('hero-video');
+        if (heroVideo) {
+            heroVideo.muted = true; // some browsers require this set as a JS property, not just the HTML attribute, for autoplay to be allowed
+
+            heroVideo.addEventListener('error', () => {
+                const err = heroVideo.error;
+                const codes = { 1: 'MEDIA_ERR_ABORTED', 2: 'MEDIA_ERR_NETWORK', 3: 'MEDIA_ERR_DECODE', 4: 'MEDIA_ERR_SRC_NOT_SUPPORTED' };
+                console.error(
+                    'Hero video failed to load. src="' + heroVideo.currentSrc + '" error=' +
+                    (err ? (codes[err.code] || err.code) : 'unknown') +
+                    '. If this is MEDIA_ERR_SRC_NOT_SUPPORTED, check that static/Videos/printer.mp4 actually exists at that exact path/case on the live server, and that it is served with Content-Type: video/mp4.'
+                );
+            });
+
+            const playPromise = heroVideo.play();
+            if (playPromise !== undefined) {
+                playPromise.catch((err) => {
+                    console.warn('Hero video autoplay was blocked or failed:', err);
+                });
+            }
+        }
+    </script>
 
     <!-- Three.js Background Script -->
     <script>
