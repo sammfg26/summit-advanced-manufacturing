@@ -2,10 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://sammfg26.github.io/summit-advanced-manufacturing/categories/</loc>
+    <loc>http://localhost:1313/summit-advanced-manufacturing/categories/</loc>
   </url><url>
-    <loc>https://sammfg26.github.io/summit-advanced-manufacturing/</loc>
+    <loc>http://localhost:1313/summit-advanced-manufacturing/</loc>
   </url><url>
-    <loc>https://sammfg26.github.io/summit-advanced-manufacturing/tags/</loc>
+    <loc>http://localhost:1313/summit-advanced-manufacturing/tags/</loc>
   </url>
 </urlset>
